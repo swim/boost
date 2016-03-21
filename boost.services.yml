@@ -6,4 +6,4 @@ services:
       - {name: event_subscriber}
   boost.route:
     class: Drupal\boost\BoostCacheRoute
-    arguments: ['@path.current']
+    arguments: ['@path.current', '@path.alias_manager']
