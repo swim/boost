@@ -1,0 +1,9 @@
+services:
+  boost.subscriber:
+    class: Drupal\boost\EventSubscriber\BoostResponseSubscriber
+    arguments: ['@html_response.attachments_processor', '@current_user']
+    tags:
+      - {name: event_subscriber}
+  boost.route:
+    class: Drupal\boost\BoostCacheRoute
+    arguments: ['@path.current']

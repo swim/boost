@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @file
+ * Contains boost.module
+ *
+ * @todo, complete the nginx boost conf.
+ * https://github.com/perusio/drupal-with-nginx/blob/D7/apps/drupal/drupal_boost.conf
+ * @todo, complete the example apache conf.
+ * 
+ */
