@@ -13,7 +13,7 @@ X-Boost-Cache: partial - bad
 X-Boost-Cache: full - good
 
 ## nginx config
-The following is an example of an nginx configuration file for use with Boost.
+The following is a very basic example of an nginx configuration for use with Boost.
 
 ```
 server {
