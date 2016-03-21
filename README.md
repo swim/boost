@@ -9,6 +9,7 @@ and that the apache or nginx config has not been applied properly.
 
 # legend
 X-Boost-Cache: partial - bad
+
 X-Boost-Cache: full - good
 
 # what happens
