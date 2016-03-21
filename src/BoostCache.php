@@ -23,7 +23,7 @@ class BoostCache {
   /**
    * @var \Drupal\boost\BoostCacheHandler
    */
-  protected $file;
+  protected $handler;
 
   /**
    * @var \Drupal\boost\BoostCacheRoute
@@ -39,8 +39,11 @@ class BoostCache {
    * Constructs a new BoostCache.
    */
   public function __construct() {
-    $this->route = new BoostCacheRoute(\Drupal::service('path.current'));
     $this->handler = new BoostCacheHandler();
+    $this->route = new BoostCacheRoute(
+      \Drupal::service('path.current'), 
+      \Drupal::service('path.alias_manager')
+    );
     $this->logger = \Drupal::logger('boost');
   }
 

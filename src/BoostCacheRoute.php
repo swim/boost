@@ -8,9 +8,12 @@
 namespace Drupal\boost;
 
 use Drupal\Core\Path\CurrentPathStack;
+use Drupal\Core\Path\AliasManager;
 
 /**
  * BoostCacheRoute class.
+ *
+ * @todo, allow admin to set uri scheme location.
  */
 class BoostCacheRoute {
 
@@ -31,18 +34,26 @@ class BoostCacheRoute {
 
   /**
    * The current path.
-   *
    * @var \Drupal\Core\Path\CurrentPathStack
    */
   protected $currentPath;
+  
+  /**
+   * The alias manager.
+   * @var \Drupal\Core\Path\AliasManager
+   */
+  protected $aliasManager;
 
   /**
    * @param \Drupal\Core\Path\CurrentPathStack $current_path
    *    The current path.
+   * @param \Drupal\Core\Path\AliasManager $aliasManager
+   *    The alias manager.
    */
-  public function __construct(CurrentPathStack $current_path) {
+  public function __construct(CurrentPathStack $current_path, AliasManager $alias_manager) {
     $this->currentPath = $current_path;
-    $this->schema = 'public://boost';
+    $this->aliasManager = $alias_manager;
+    $this->schema = file_default_scheme() . '://boost';
     $this->extension = '.html';
   }
 
@@ -57,11 +68,11 @@ class BoostCacheRoute {
    * Return the current path.
    */
   public function getPath() {
-    return $this->currentPath->getPath();
+    return $this->aliasManager->getAliasByPath($this->currentPath->getPath());
   }
 
   /**
-   * Return the file path.
+   * Return the converted file path.
    */
   public function getFilePath() {
     if (!$this->filePath) {

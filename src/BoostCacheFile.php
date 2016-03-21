@@ -5,7 +5,6 @@
  * Contains Drupal\boost\BoostCacheFile
  *
  * @todo, managed files...
- * @todo, logger...
  */
 
 namespace Drupal\boost;
@@ -55,9 +54,7 @@ class BoostCacheFile {
    */
   public function save($uri, $content) {
     $this->directory($uri);
-
-    file_unmanaged_save_data($content, $uri, FILE_EXISTS_REPLACE);
-    $this->modify($content, $uri);
+    $this->modify($uri, $content);
   }
 
   /**
@@ -86,7 +83,7 @@ class BoostCacheFile {
    * @param string $content
    */
   private function modify($uri, $content) {
-    return file_put_contents($uri, $content);
+    return file_unmanaged_save_data($content, $uri, FILE_EXISTS_REPLACE);
   }
 
 }
