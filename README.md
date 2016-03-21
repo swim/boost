@@ -13,7 +13,7 @@ X-Boost-Cache: partial - bad
 X-Boost-Cache: full - good
 
 # what happens
-1. Page is requested for the first time and is built dynamically with PHP.
-2. Page is cached on the local file system; if accessable to anon users.
+1. Page is requested for the first time and is built dynamically by PHP.
+2. Page is cached on the local file system; if accessed by an anonymous user.
 3. When the route is requested again the page is served from the file system.
-4. For this module to do anything worth while the apache or nginx conf must be applied.
+4. For this module to do anything worth while the apache or nginx config must be applied.
