@@ -1,16 +1,19 @@
 ## About
 Drupal 8 port of the fantastic D7 Boost module.
 
+
 ## Installation
 Download and install like any D8 module. Once installed visit a page as an anonymous user to
 generate a local cache file. Check for the X-Boost response header to confirm it's working. There
 are two X-Boost response headers to look for; partial and full. Patial means that PHP is still executing
 and that the apache or nginx config has not been applied correctly.
 
+
 ## Legend
 X-Boost-Cache: partial - bad
 
 X-Boost-Cache: full - good
+
 
 ## Nginx config
 The following is a very basic example of an nginx configuration for use with Boost.
@@ -75,11 +78,47 @@ server {
 ## Apache config
 @todo
 
+
+## WRK HTTP benchmarks
+#### Boost with nginx config
+Running 30s test @ http://testsite.dev/testpage
+  12 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    38.12ms   64.66ms 343.24ms   82.64%
+    Req/Sec     1.68k   755.46    16.98k    69.10%
+  595713 requests in 30.10s, 6.84GB read
+Requests/sec:  19791.44
+Transfer/sec:    232.74MB
+
+#### Boost without nginx config
+Running 30s test @ http://saki.dev/testpage
+  12 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.68s   212.61ms   2.00s    93.69%
+    Req/Sec     9.01      7.65    60.00     68.12%
+  1670 requests in 30.05s, 20.13MB read
+  Socket errors: connect 0, read 0, write 0, timeout 7
+Requests/sec:     55.58
+Transfer/sec:    685.99KB
+
+#### No cache
+Running 30s test @ http://saki.dev/testpage
+  12 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     0.00us    0.00us   0.00us    -nan%
+    Req/Sec     6.37      8.09    40.00     86.45%
+  236 requests in 30.05s, 2.85MB read
+  Socket errors: connect 0, read 0, write 0, timeout 236
+Requests/sec:      7.85
+Transfer/sec:     97.04KB
+
+
 ## The going on's
 1. Page is requested for the first time and is built dynamically by PHP.
 2. Page is cached on the local file system; if accessed by an anonymous user.
 3. When the route is requested again the page is served from the file system.
 4. For this module to do anything worth while the apache or nginx config must be applied.
+
 
 ## Roadmap
 1. Sub-module Boost crawler; implementing Guzzle.
