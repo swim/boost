@@ -83,10 +83,12 @@ server {
 #### Boost with nginx config
 Running 30s test @ http://testsite.dev/testpage <br>
 12 threads and 100 connections
-| Thread Stats  | Avg           | Stdev  | Max     | +/- Stdev |
-| ------------- |:-------------:|:------:|:-------:|----------:|
-| Latency       | 38.12ms       | 64.66ms| 343.24ms| 82.64%    |
-| Req/Sec       | 1.68k         | 755.46 | 16.98k  | 69.10%    |
+
+| Thread Stats  | Avg           | Stdev   | Max      | +/- Stdev  |
+| ------------- | ------------- | ------  | -------- | ---------- |
+| Latency       | 38.12ms       | 64.66ms | 343.24ms | 82.64%     |
+| Req/Sec       | 1.68k         | 755.46  | 16.98k   | 69.10%     |
+
 595713 requests in 30.10s, 6.84GB read <br>
 Requests/sec: 19791.44 <br>
 Transfer/sec: 232.74MB
@@ -94,10 +96,12 @@ Transfer/sec: 232.74MB
 #### Boost without nginx config
 Running 30s test @ http://testsite.dev/testpage <br>
 12 threads and 100 connections
-| Thread Stats  | Avg           | Stdev   | Max     | +/- Stdev |
-| ------------- |:-------------:|:-------:|:-------:|----------:|
-| Latency       | 1.68s         | 212.61ms| 2.00s   | 93.69%    |
-| Req/Sec       | 9.01          | 7.65    | 60.00   | 68.12%    |
+
+| Thread Stats  | Avg           | Stdev    | Max     | +/- Stdev |
+| ------------- | ------------- | -------- | ------- | --------- |
+| Latency       | 1.68s         | 212.61ms | 2.00s   | 93.69%    |
+| Req/Sec       | 9.01          | 7.65     | 60.00   | 68.12%    |
+
 1670 requests in 30.05s, 20.13MB read <br>
 Socket errors: connect 0, read 0, write 0, timeout 7<br>
 Requests/sec: 55.58 <br>
@@ -106,10 +110,12 @@ Transfer/sec: 685.99KB
 #### No cache
 Running 30s test @ http://testsite.dev/testpage <br>
 12 threads and 100 connections
+
 | Thread Stats  | Avg           | Stdev   | Max     | +/- Stdev |
-| ------------- |:-------------:|:-------:|:-------:|----------:|
+| ------------- | ------------- | ------- | ------- | --------- |
 | Latency       | 0.00us        | 0.00us  | 0.00us  | -nan%     |
 | Req/Sec       | 6.37          | 8.09    | 40.00   | 86.45%    |
+
 236 requests in 30.05s, 2.85MB read <br>
 Socket errors: connect 0, read 0, write 0, timeout 236 <br>
 Requests/sec: 7.85 <br>
