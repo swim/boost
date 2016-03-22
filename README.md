@@ -5,7 +5,7 @@ Drupal 8 port of the fantastic D7 Boost module.
 Download and install like any D8 module. Once installed visit a page as an anonymous user to
 generate a local cache file. Check for the X-Boost response header to confirm it's working. There
 are two X-Boost response headers to look for; partial and full. Patial means that PHP is still executing
-and that the apache or nginx config has not been applied properly.
+and that the apache or nginx config has not been applied correctly.
 
 ## Legend
 X-Boost-Cache: partial - bad
@@ -37,13 +37,27 @@ server {
       rewrite ^ /index.php;
     }
 
+    location ~* ^(?:.+\.(?:htaccess|make|txt|engine|inc|info|install|module|profile|po|pot|sh|.*sql|test|theme|tpl(?:\.php)?|xtmpl)|code-style\.pl|/Entries.*|/Repository|/Root|/Tag|/Template)$ {
+      return 404;
+    }
+
     add_header X-Boost-Cache "full";
     try_files $uri @rewrite;
   }
 
   location @rewrite {
+    gzip_static on;
+
+    if ($request_method = POST) {
+      rewrite ^ /index.php;
+    }
+
     set $boost_uri "${request_uri}.html";
-    rewrite ^ /sites/default/files/boost$boost_uri;
+    try_files ^ /sites/default/files/boost$boost_uri @drupal;
+  }
+
+  location @drupal {
+    rewrite ^ /index.php;
   }
 
   location ~ \.php$ {
