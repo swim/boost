@@ -5,7 +5,7 @@ Drupal 8 port of the fantastic D7 Boost module.
 ## Installation
 Download and install like any D8 module. Once installed visit a page as an anonymous user to
 generate a local cache file. Check for the X-Boost response header to confirm it's working. There
-are two X-Boost response headers to look for; partial and full. Patial means that PHP is still executing
+are two X-Boost response headers to look for; partial and full. Partial means that PHP is still executing
 and that the apache or nginx config has not been applied correctly.
 
 
